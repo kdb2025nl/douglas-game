@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Douglas vs Ad: Battle for Credit-IQ</title>
+<title>Douglas vs External Advisor: Battle for Credit-IQ</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥊</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,7 +50,7 @@
 </style>
 </head>
 <body>
-<canvas id="game" width="960" height="540" aria-label="Douglas vs Ad arcade fighting game"></canvas>
+<canvas id="game" width="960" height="540" aria-label="Douglas vs External Advisor arcade fighting game"></canvas>
 <p class="touch-note">This game needs a keyboard. Open it on a laptop.</p>
 
 <div class="legend">
@@ -179,7 +179,7 @@ const CFG = {
     }
   },
   ad: {
-    id: 'ad', name: 'AD', stance: 'BROAD MARKET', color: '#ff8a4f',
+    id: 'ad', name: 'EXTERNAL ADVISOR', stance: 'BROAD MARKET', color: '#ff8a4f',
     winLine: 'STRATEGY APPROVED: BROAD MARKET',
     pal: { suit: '#2b3a6b', suitD: '#1c2748', pants: '#4a4f5c', skin: '#f0b79a', hair: '#c2935a', shoe: '#0c0d14', accent: '#1b2140', shirt: '#e8ecf2' },
     taunts: ["YOU'RE FISHING IN A BATHTUB!", 'THINK BIGGER!', "THAT'S A ROUNDING ERROR, NOT A MARKET!", 'YOUR SEGMENT FITS IN A LIFT!',
@@ -934,16 +934,16 @@ function dim(alpha) { ctx.fillStyle = 'rgba(5,6,13,' + alpha + ')'; ctx.fillRect
 function drawTitle() {
   dim(0.8);
   G.f.forEach(drawFighter);
-  ctx.font = '40px ' + FONT;
-  const wd = ctx.measureText('DOUGLAS').width, wv = ctx.measureText('VS').width * 0.7, wa = ctx.measureText('AD').width, gap = 28;
+  ctx.font = '30px ' + FONT;
+  const wd = ctx.measureText('DOUGLAS').width, wv = ctx.measureText('VS').width * 0.7, wa = ctx.measureText('EXTERNAL ADVISOR').width, gap = 20;
   let tx = 480 - (wd + wv + wa + gap * 2) / 2;
-  T('DOUGLAS', tx, 116, 40, '#4f86ff', 'left'); tx += wd + gap;
-  T('VS', tx, 118, 28, '#ffd23f', 'left'); tx += wv + gap;
-  T('AD', tx, 116, 40, '#ff8a4f', 'left');
+  T('DOUGLAS', tx, 116, 30, '#4f86ff', 'left'); tx += wd + gap;
+  T('VS', tx, 118, 21, '#ffd23f', 'left'); tx += wv + gap;
+  T('EXTERNAL ADVISOR', tx, 116, 30, '#ff8a4f', 'left');
   T('BATTLE FOR CREDIT-IQ', 480, 176, 18, '#ffffff');
   T('EXPORTERS FIRST', 186, 330, 9, '#4f86ff');
   T('BROAD MARKET', 774, 330, 9, '#ff8a4f');
-  const rows = [['1', 'PLAY AS DOUGLAS'], ['2', 'PLAY AS AD'], ['3', 'TWO PLAYERS'], ['4', 'CPU LEVEL: ' + LEVELS[G.level].name], ['5', 'SCOREBOARD']];
+  const rows = [['1', 'PLAY AS DOUGLAS'], ['2', 'PLAY AS EXTERNAL ADVISOR'], ['3', 'TWO PLAYERS'], ['4', 'CPU LEVEL: ' + LEVELS[G.level].name], ['5', 'SCOREBOARD']];
   rows.forEach(([k, label], i) => {
     const y = 228 + i * 34;
     ctx.fillStyle = '#ffd23f'; ctx.fillRect(338, y - 12, 24, 24);
@@ -1027,7 +1027,7 @@ function drawBanners() {
     dim(0.55);
     if (G.winner >= 0) {
       const w = G.f[G.winner];
-      T(w.cfg.name + ' WINS', 480, 200, 48, w.cfg.color);
+      T(w.cfg.name + ' WINS', 480, 200, w.cfg.name.length > 10 ? 36 : 48, w.cfg.color);
       T(w.cfg.winLine, 480, 262, 14, '#ffffff');
       T('WINNER: ' + playerName(G.winner), 480, 292, 10, '#c9cee6');
     } else {
